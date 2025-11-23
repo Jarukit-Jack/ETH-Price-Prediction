@@ -54,7 +54,7 @@ Output: Predicted Price
 
 ##  การติดตั้ง
 
-### วิธีที่ 1: ใช้ UV (แนะนำ - เร็วกว่า)
+### วิธีที่ 1: ใช้ UV 
 
 ```bash
 # ติดตั้ง UV (ถ้ายังไม่มี)
@@ -67,7 +67,7 @@ uv pip install -r requirements.txt
 ### วิธีที่ 2: ใช้ pip แบบปกติ
 
 ```bash
-# สร้าง virtual environment (แนะนำ)
+# สร้าง virtual environment 
 python -m venv venv
 source venv/bin/activate  # บน Linux/Mac
 # หรือ
@@ -96,12 +96,12 @@ jupyter notebook deep_learn_eth.ipynb
 ```
 project_deep_learning/
 │
-├── deep_learn_eth.ipynb          # Notebook หลัก
-├── requirements.txt              # Dependencies
-├── README.md                     # เอกสารนี้
-├── best_lstm_model.pth          # โมเดลที่เทรนแล้ว
-├── LSTM_model_architecture.png  # ภาพสถาปัตยกรรม
-└── LSTM_model_architecture      # รายละเอียดโครงสร้าง
+├── deep_learn_eth.ipynb          
+├── requirements.txt           
+├── README.md                    
+├── best_lstm_model.pth         
+├── LSTM_model_architecture.png 
+└── LSTM_model_architecture     
 ```
 
 ---
@@ -203,7 +203,7 @@ project_deep_learning/
 
 ---
 
-## 📝 License
+##  License
 
 โปรเจคนี้จัดทำขึ้นเพื่อการศึกษาเท่านั้น
 
@@ -228,8 +228,8 @@ project_deep_learning/
 
 <div align="center">
 
-**Made with ❤️ by Team Deep Learning 2568**
+**Made with ❤️ by FJ TEAM **
 
-⭐ ถ้าชอบโปรเจคนี้ อย่าลืม Star ด้วยนะครับ!
+Support us by ⭐ this project.
 
 </div>
