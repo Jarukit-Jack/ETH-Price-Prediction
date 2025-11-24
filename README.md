@@ -1,26 +1,26 @@
 # Ethereum Price Prediction using LSTM
 
-**การทำนายราคา Ethereum (ETH-USD) ด้วย Long Short-Term Memory (LSTM)**
+**Forecasting Ethereum (ETH-USD) trends using Long Short-Term Memory (LSTM)**
 
 [Open in Colab](https://colab.research.google.com/github/Jarukit-Jack/project_deep_learningvv/blob/main/deep_learn_eth.ipynb)
 
 ---
 
-##  รายละเอียดโปรเจค
+##  Project Overview
 
-โปรเจคนี้พัฒนาโมเดล LSTM (Long Short-Term Memory) เพื่อทำนายราคาของ Ethereum โดยใช้ข้อมูลราคาย้อนหลังจาก Yahoo Finance ผ่านไลบรารี `yfinance`
+This project implements a Long Short-Term Memory (LSTM) neural network to predict Ethereum prices. It utilizes historical price data fetched via the `yfinance` library to train a time-series forecasting model. This project demonstrates end-to-end deep learning workflow capability, from data ingestion to model deployment and visualization. 
 
-###  คุณสมบัติหลัก
+###  Key Features
 
--  ดึงข้อมูลราคา ETH แบบเรียลไทม์จาก Yahoo Finance
--  โมเดล LSTM 2 ชั้นพร้อม Dropout สำหรับป้องกัน Overfitting
--  การประมวลผลข้อมูลแบบ Time Series ด้วย MinMaxScaler
--  การทำนายราคาจาก 60 วันย้อนหลัง
--  การแสดงผลและประเมินประสิทธิภาพโมเดล
+-  Real-Time Data Extraction: Fetches live ETH-USD data directly from Yahoo Finance APIs.
+-  Robust Architecture: Implements a 2-layer LSTM with Dropout regularization (0.3) to prevent overfitting.
+-  Data Preprocessing: Utilizes MinMaxScaler for optimal time-series normalization.
+-  Sequence Prediction: Forecasts future prices based on a sliding window of 60 days.
+-  Performance Evaluation: Includes comprehensive visualization and metric calculation (MSE, RMSE, MAE).
 
 ---
 
-##  สถาปัตยกรรมโมเดล
+##  Model Architecture
 
 ```
 Input: (batch_size, sequence_length=60, features=5)
@@ -52,34 +52,34 @@ Output: Predicted Price
 
 ---
 
-##  การติดตั้ง
+##  Installation
 
-### วิธีที่ 1: ใช้ UV 
+### Method 1: Using UV (Recommended)
 
 ```bash
-# ติดตั้ง UV (ถ้ายังไม่มี)
-curl -LsSf https://astral.sh/uv/install.sh | sh
+# Install UV (if not already installed)
+curl -LsSf [https://astral.sh/uv/install.sh](https://astral.sh/uv/install.sh) | sh
 
-# ติดตั้ง dependencies
+# Install dependencies
 uv pip install -r requirements.txt
 ```
 
-### วิธีที่ 2: ใช้ pip แบบปกติ
+### Method 2: Standard pip
 
 ```bash
-# สร้าง virtual environment 
+# Create a virtual environment
 python -m venv venv
-source venv/bin/activate  # บน Linux/Mac
-# หรือ
-venv\Scripts\activate  # บน Windows
+source venv/bin/activate  # Linux/Mac
+# or
+venv\Scripts\activate  # Windows
 
-# ติดตั้ง dependencies
+# Install dependencies
 pip install -r requirements.txt
 ```
 
 ---
 
-##  การใช้งาน
+##  Usage
 
 ### 1. เปิด Jupyter Notebook
 
@@ -89,9 +89,9 @@ jupyter notebook deep_learn_eth.ipynb
 
 ### 2. หรือรันใน Google Colab
 
-คลิกที่ปุ่ม "Open in Colab" ด้านบน
+Click the "Open in Colab" badge at the top of this README to execute the notebook in the cloud.
 
-### 3. โครงสร้างโค้ดในโปรเจค
+### 3. Project Structure
 
 ```
 project_deep_learning/
@@ -106,43 +106,43 @@ project_deep_learning/
 
 ---
 
-## 📊 ขั้นตอนการทำงาน
+## 📊 Workflow
 
-### StepA: ติดตั้ง Dependencies
-ติดตั้ง libraries ที่จำเป็น: `torch`, `yfinance`, `tqdm`, `torchvision`, `torchsummary`
+### StepA: Dependency Setup
+Installation of core libraries: `torch`, `yfinance`, `tqdm`, `torchvision`, `torchsummary`
 
-### StepB: เตรียมข้อมูล
-1. ดึงข้อมูลราคา ETH-USD จาก Yahoo Finance
-2. ทำ Normalization ด้วย MinMaxScaler
-3. สร้าง Sequences (60 วันย้อนหลัง)
-4. แบ่งข้อมูล Train/Test (80/20)
+### StepB: Data Preparation
+1. Data Extraction: Fetch ETH-USD data from Yahoo Finance.
+2. Normalization: Apply MinMaxScaler to scale data between 0 and 1.
+3. Sequencing: Create sliding window sequences (60 days history).
+4. Splitting: Divide data into Training (80%) and Testing (20%) sets.
 
-### StepC: ออกแบบโมเดล
-สร้างโมเดล LSTM ด้วย:
-- 2 ชั้น LSTM
+### StepC: Model Design
+Construction of the LSTM architecture:
+- Stacked LSTM layers (2 layers).
 - Dropout layers
 - Fully Connected output layer
 
-### StepD: ตั้งค่าโมเดล
+### StepD: Configuration
 - Loss Function: MSE (Mean Squared Error)
-- Optimizer: Adam
-- DataLoader สำหรับ Training และ Validation
+- Optimizer: Adam Optimizer.
+- Loaders: Batched DataLoaders for training and validation.
 
-### StepE: เทรนโมเดล
-- Training loop พร้อม Early Stopping
-- บันทึกโมเดลที่ดีที่สุด
-- ติดตาม Training และ Validation Loss
+### StepE: Training
+- Training loop implementation with Early Stopping.
+- Automated saving of the best model weights.
+- Real-time tracking of Training and Validation Loss.
 
-### StepF: ประเมินผล
-- ทดสอบโมเดลกับ Test Set
-- คำนวณ MSE, MAE, RMSE, MAPE
-- แสดงกราফเปรียบเทียบราคาจริงกับราคาที่ทำนาย
+### StepF: Evaluation
+- Inference on the Test Set.
+- Metric calculation: MSE, MAE, RMSE, MAPE
+- Visualization: Plotting Predicted Prices vs. Actual Prices.
 
 ---
 
-##  ผลลัพธ์
+##  Results
 
-โมเดลสามารถทำนายแนวโน้มราคา Ethereum ได้อย่างมีประสิทธิภาพ โดยใช้ข้อมูล:
+The model successfully identifies price trends using the following input features:
 - **Open Price**: ราคาเปิด
 - **High Price**: ราคาสูงสุด
 - **Low Price**: ราคาต่ำสุด
@@ -151,7 +151,7 @@ project_deep_learning/
 
 ---
 
-##  เทคโนโลยีที่ใช้
+##  Tech Stack
 
 - **PyTorch**: Framework สำหรับ Deep Learning
 - **yfinance**: ดึงข้อมูลการเงินจาก Yahoo Finance
@@ -163,7 +163,7 @@ project_deep_learning/
 
 ---
 
-##  เอกสารอ้างอิง
+##  References
 
 - [PyTorch Documentation](https://pytorch.org/docs/stable/index.html)
 - [LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)
@@ -172,63 +172,61 @@ project_deep_learning/
 
 ---
 
-##  ผู้จัดทำ
+##  Authors
 
 <table>
   <tr>
     <td align="center">
-      <b>นายปริญญา อบอุ่น</b><br>
-      รหัสนิสิต 6610502145
+      <b>Parinya Aobaun</b><br>
+      std_id: 6610502145
     </td>
     <td align="center">
-      <b>นายจารุกิตติ์ ผลวัฒนานุวงศ์</b><br>
-      รหัสนิสิต 6610505306
+      <b>Jarukit Phonwattananuwong</b><br>
+      std_id 6610505306
     </td>
   </tr>
 </table>
 
 ---
 
-##  สถาบันการศึกษา
+##  Academic Context
 
-**รายงานฉบับนี้เป็นส่วนหนึ่งของรายวิชา**
+This project is submitted as part of the curriculum for:
 
-**การเรียนรู้เชิงลึก (Deep Learning) 01204466-65**
+Deep Learning (01204466-65)
+Semester 1, Academic Year 2025
 
-ภาคเรียนที่ 1 ปีการศึกษา 2568
-
-**มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตบางเขน**
-
-**อาจารย์ผู้สอน: ผศ.ดร.ภารุจ รัตนวรพันธุ์**
+Kasetsart University, Bang Khen Campus
+Instructor: Asst. Prof. Dr. Paruj Rattanaworabhan
 
 ---
 
 ##  License
 
-โปรเจคนี้จัดทำขึ้นเพื่อการศึกษาเท่านั้น
+This project is created for educational purposes.
 
 ---
 
-##  การมีส่วนร่วม
+##  Contribution
+Contributions are welcome! If you find an issue or want to improve the model:
 
-หากพบปัญหาหรือต้องการปรับปรุง:
-1. Fork โปรเจค
-2. สร้าง Feature Branch
-3. Commit การเปลี่ยนแปลง
-4. Push ไปยัง Branch
-5. เปิด Pull Request
+1. Fork the project.
+2. Create a Feature Branch (git checkout -b feature/AmazingFeature).
+3. Commit your changes (git commit -m 'Add some AmazingFeature').
+4. Push to the branch (git push origin feature/AmazingFeature).
+5. Open a Pull Request.
 
 ---
 
-##  ข้อจำกัดความรับผิดชอบ
+##  Disclaimer
 
-โมเดลนี้จัดทำขึ้นเพื่อการศึกษาและวิจัยเท่านั้น ไม่ควรนำไปใช้ในการตัดสินใจลงทุนจริง การลงทุนมีความเสี่ยง ควรศึกษาข้อมูลและปรึกษาผู้เชี่ยวชาญก่อนตัดสินใจ
+This model is created for educational and research purposes only. It should not be used for financial decision-making or actual trading. Cryptocurrency investments carry high risks; always consult a financial expert before investing.
 
 ---
 
 <div align="center">
 
-**Made with ❤️ by FJ TEAM **
+**Made with ❤️ by FJ TEAM**
 
 Support us by ⭐ this project.
 
